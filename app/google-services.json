@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "329997205235",
+    "firebase_url": "https://sigin-poc.firebaseio.com",
+    "project_id": "sigin-poc",
+    "storage_bucket": "sigin-poc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329997205235:android:130a075ecc4cb6856b0186",
+        "android_client_info": {
+          "package_name": "com.poc.googlesignin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "329997205235-qc9gviviug1uajf5r9nm8sc8b7bgotcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.poc.googlesignin",
+            "certificate_hash": "23aee3606521ba320f72f1cfa181737e298c58bd"
+          }
+        },
+        {
+          "client_id": "329997205235-ifm41kunc75p7385jl5425t2gqnpqdl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkxWRWy7GYzYke84G8tFgZSp-jC5jRUew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "329997205235-ifm41kunc75p7385jl5425t2gqnpqdl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

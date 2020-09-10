@@ -47,11 +47,6 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
     private fun onClickGoogleSignIn() {
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestServerAuthCode(
-                    getString(R.string.default_web_client_id),
-                    true
-                )
                 .requestEmail()
                 .requestScopes(
                     Scope(Scopes.EMAIL)
@@ -73,20 +68,15 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
     ) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SIGN_IN) {
-            if (resultCode == Activity.RESULT_OK) {
-                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                val account = try {
-                    task.getResult(ApiException::class.java)
-                } catch (e: ApiException) {
-                    null
-                }
-                account?.let {
-                    sendInformationToWeb(it.email)
-                } ?: run {
-                    sendInformationToWeb("Account not found")
-                }
-            } else {
-                sendInformationToWeb(UNIDENTIFIED_ERROR)
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            val account = try {
+                task.getResult(ApiException::class.java)
+            } catch (e: ApiException) {
+                sendInformationToWeb("${e.statusCode}")
+                null
+            }
+            account?.let {
+                sendInformationToWeb(it.email)
             }
         }
     }
