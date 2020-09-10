@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestIdToken(getResources().getString(R.string.default_web_client_id))
+                .requestServerAuthCode(getResources().getString(R.string.default_web_client_id),
+                    true)
                 .requestScopes(
                     Scope(Scopes.EMAIL)
                 )

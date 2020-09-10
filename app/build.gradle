@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -19,15 +19,15 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('/Users/s89299/poc-google-sigin-issue/poc-google-sigin')
+            storeFile file('/Users/s89299/poc-google-sigin-issue/new-key')
             storePassword '123456'
-            keyAlias 'poc'
+            keyAlias 'new-poc'
             keyPassword '123456'
         }
         debug {
-            storeFile file('/Users/s89299/poc-google-sigin-issue/poc-google-sigin')
+            storeFile file('/Users/s89299/poc-google-sigin-issue/new-key')
             storePassword '123456'
-            keyAlias = 'poc'
+            keyAlias = 'new-poc'
             keyPassword '123456'
         }
     }
@@ -40,7 +40,7 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.debug
         }
     }
 
