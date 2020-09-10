@@ -3,7 +3,6 @@ package com.poc.googlesignin
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
     companion object {
         private const val GOOGLE_SIGN_IN = 4432
+        private const val UNIDENTIFIED_ERROR = "unidentifiedError"
     }
 
     private var mGoogleSignInClient: GoogleSignInClient? = null
@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
     override fun handleJavaScripInterface(bridgeKey: String, value: String) {
         when (bridgeKey) {
             TRIGGER_NATIVE -> {
-                Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
                 onClickGoogleSignIn()
             }
         }
@@ -81,9 +80,21 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
                 } catch (e: ApiException) {
                     null
                 }
-                Toast.makeText(this, account?.email, Toast.LENGTH_SHORT).show()
+                account?.let {
+                    sendInformationToWeb(it.email)
+                } ?: run {
+                    sendInformationToWeb("Account not found")
+                }
             } else {
-                Toast.makeText(this, "unidentifiedError", Toast.LENGTH_SHORT).show()
+                sendInformationToWeb(UNIDENTIFIED_ERROR)
+            }
+        }
+    }
+
+    private fun sendInformationToWeb(information: String?) {
+        wvContent.apply {
+            post {
+                evaluateJavascript("javascript:WebJS.onTriggerWeb('${information}')", null)
             }
         }
     }
