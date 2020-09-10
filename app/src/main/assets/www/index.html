@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+  <body>
+    <h2>Test Call Google Sing In via native</h2>
+    <button onclick="callNativeFunction()" style="width:100px;height:40px;">Sign In</button>
+    </br>
+    <p>Callback Form Google Sign In Data:</p>
+    <textarea id="callbackDataTxt" style="width:100%;height:150px;" disabled="true"></textarea>
+  </body>
+
+</html>
+
+<script>
+window["WebJS"] = {
+  onTriggerWeb: (res) => {
+    getDataCallback(res)
+  }
+}
+
+function callNativeFunction() {
+  var dataMessage = "Click Sign In"
+  var operatingSystem = getMobileOperatingSystem();
+  if (operatingSystem === "iOS") {
+    window.webkit.messageHandlers.triggerNative.postMessage(dataMessage);
+  } else if (operatingSystem == "Android") {
+    window.WebviewJS.triggerNative(dataMessage)
+  } else {
+  }
+}
+
+function getDataCallback(str) {
+  document.getElementById("callbackDataTxt").value = str;
+}
+
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if (/android/i.test(userAgent)) {
+    return "Android";
+  }
+
+  // iOS detection from: http://stackoverflow.com/a/9039885/177710
+  if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+    return "iOS";
+  }
+
+  return "unknown";
+}
+</script>
