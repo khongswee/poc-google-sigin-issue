@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "33779539633",
+    "firebase_url": "https://strong-rider-289503.firebaseio.com",
+    "project_id": "strong-rider-289503",
+    "storage_bucket": "strong-rider-289503.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33779539633:android:d1ddf9cb0b92c2edca4c90",
+        "android_client_info": {
+          "package_name": "com.poc.googlesignin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33779539633-bk0hjq40chhfh7vcbrn08l9kgi6ga7n9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWrCBCSmGly0tLHR_B488TaIioqAVM4LQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33779539633-bk0hjq40chhfh7vcbrn08l9kgi6ga7n9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

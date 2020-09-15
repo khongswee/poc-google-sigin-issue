@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">POC Google SignIn</string>
-    <string name="default_web_client_id">831355415008-93tlm83k7hmbk76plbd7bcek1uvs85gi.apps.googleusercontent.com</string>
+<!--    <string name="default_web_client_id">831355415008-93tlm83k7hmbk76plbd7bcek1uvs85gi.apps.googleusercontent.com</string>-->
 </resources>
