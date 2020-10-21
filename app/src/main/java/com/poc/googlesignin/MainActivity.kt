@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks, SCBWebViewConfig 
             it.settings.domStorageEnabled = true
             it.loadUrl("file:///android_asset/www/index.html")
             it.addJavascriptInterface(WebJavaScripInterface(this), "WebviewJS")
-//            it.setAdvanceWebView(this)
-//            it.displayUrl("file:///android_asset/www/index.html")
-//            it.setJavascriptInterface(this, "WebviewJS");
         }
     }
 
