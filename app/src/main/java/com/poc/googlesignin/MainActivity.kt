@@ -1,6 +1,5 @@
 package com.poc.googlesignin
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +12,7 @@ import com.google.android.gms.common.api.Scope
 import com.poc.googlesignin.WebJavaScripInterface.Companion.TRIGGER_NATIVE
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
+class MainActivity : AppCompatActivity(), JavaScriptCallbacks, SCBWebViewConfig {
     companion object {
         private const val GOOGLE_SIGN_IN = 4432
         private const val UNIDENTIFIED_ERROR = "unidentifiedError"
@@ -33,6 +32,9 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
             it.settings.domStorageEnabled = true
             it.loadUrl("file:///android_asset/www/index.html")
             it.addJavascriptInterface(WebJavaScripInterface(this), "WebviewJS")
+//            it.setAdvanceWebView(this)
+//            it.displayUrl("file:///android_asset/www/index.html")
+//            it.setJavascriptInterface(this, "WebviewJS");
         }
     }
 
@@ -45,14 +47,21 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
     }
 
     private fun onClickGoogleSignIn() {
+        val scopes = arrayOf(
+            Scope("https://www.googleapis.com/auth/userinfo.profile"),
+            Scope("https://www.googleapis.com/auth/business.manage"),
+            Scope("https://www.googleapis.com/auth/plus.business.manage")
+        )
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestIdToken(getResources().getString(R.string.default_web_client_id))
-                .requestServerAuthCode(getResources().getString(R.string.default_web_client_id),
-                    true)
+                .requestServerAuthCode(
+                    getResources().getString(R.string.default_web_client_id),
+                    true
+                )
                 .requestScopes(
-                    Scope(Scopes.EMAIL)
+                    Scope(Scopes.EMAIL),scopes[0],scopes[1],scopes[2]
                 )
                 .build()
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
@@ -91,4 +100,7 @@ class MainActivity : AppCompatActivity(), JavaScriptCallbacks {
             }
         }
     }
+
+    override val isJavaScriptEnabled: Boolean
+        get() = true
 }
